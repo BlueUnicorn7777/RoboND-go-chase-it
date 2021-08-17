@@ -24,7 +24,7 @@ void drive_robot(float lin_x, float ang_z)
 void process_image_callback(const sensor_msgs::Image img)
 {
 
-    int white_pixel = 255;
+    //int white_pixel = 255;
 
     // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
@@ -38,12 +38,11 @@ void process_image_callback(const sensor_msgs::Image img)
     if(img.step!=0)
     bin_size = img.step/5;
     
-
-    // Loop through each pixel in the image and check if its equal to the first one
-    for(int k = 0;k<img.height * img.step;k+=img.step){
-    	for(int i = 0;i<img.step;i++){
-     		if(img.data[i+k]==white_pixel){
+    for(int k = 0;k<img.height * img.step;k+=3){
+    	
+     		if(img.data[k]==255 && img.data[k+1]==255 && img.data[k+2]==255){
                 	ball_found = true;
+			int i = k % img.step;
                         if(i<(1*bin_size)){lin_x = 0.2, ang_z = 0.6;}
 			else if(i<(2*bin_size)){lin_x = 0.4, ang_z = 0.4;}
 			else if(i<(3*bin_size)){lin_x = 0.6, ang_z = 0;}
@@ -51,7 +50,7 @@ void process_image_callback(const sensor_msgs::Image img)
 			else {lin_x = 0.2, ang_z = -0.6;}
      		        break;
 		}
-    	}
+    	
     }
 
    //if (ball_found == true)
