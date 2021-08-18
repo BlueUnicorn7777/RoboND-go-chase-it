@@ -8,7 +8,10 @@
 <xacro:property name="chassis_height" value="0.1"/>
 <xacro:property name="wheel_radius" value="0.1"/>
 <xacro:property name="wheel_depth" value="0.05"/>
-
+    
+<!-- inertia calculation macro reference - 
+https://kiranpalla.com/autonomous-navigation-ros-differential-drive-robot-simulation/describing-ros-robot-with-urdf/-->
+    
 <xacro:macro name="box_inertia" params="m w h d">
     <inertial>
       <mass value="${m}"/>
