@@ -32,7 +32,10 @@ https://kiranpalla.com/autonomous-navigation-ros-differential-drive-robot-simula
       <inertia ixx="${2.0*m*(r*r)/5.0}" ixy="0.0" ixz="0.0" iyy="${2.0*m*(r*r)/5.0}" iyz="0.0" izz="${2.0*m*(r*r)/5.0}"/>
     </inertial>
 </xacro:macro> 
-
+    
+<!-- inertia calculation macro reference - 
+end -->
+    
 <xacro:macro name="wheel" params="name *origin">
     <link name="${name}_wheel">
     <xacro:cylinder_inertia m="5" r="${wheel_radius}" h="${wheel_depth}"/>
